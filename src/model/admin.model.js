@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const AdminSchema = new mongoose.Schema({
-    idAdmin: {
-        type: Number
-    },
     name: {
         type: String
     },
@@ -16,12 +13,17 @@ const AdminSchema = new mongoose.Schema({
     image: {
         type: String
     },
-    ids: {
-        type: Array,
-        default: []
+    numberPhone: {
+        type: String
     }
 });
-
+AdminSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+ });
+ 
+ AdminSchema.set('toJSON', {
+    virtuals: true,
+ });
 const Admin = mongoose.model('admin', AdminSchema);
 
 module.exports = {

@@ -6,8 +6,8 @@ const getAllAdmin = async (req, res) => {
 }
 
 const getOneAdmin = async (req, res) => {
-    const {idUser} = req.params;
-    const result = await Model.Admin.findById(idUser);
+    const {id} = req.params;
+    const result = await Model.Admin.findById(id);
     if(!result){
         return res.status(500).send({message: "Không tìm thấy"})
     }
@@ -15,29 +15,33 @@ const getOneAdmin = async (req, res) => {
 }
 
 const deleteAdmin = async (req, res) => {
-    const {idAdmin} = req.params;
-    await Model.Admin.findByIdAndDelete(idAdmin);
+    const {id} = req.params;
+    await Model.Admin.findByIdAndDelete(id);
     return res.status(200).send({success: true});
 }
 
 const updateAdmin = async (req, res) => {
-    await Model.Admin.findByIdAndUpdate({ idAdmin: req.params }, {
+    const {id} = req.params;
+    const update = await Model.Admin.findByIdAndUpdate(id, {
         name: req.body.name,
         email: req.body.email,
         address: req.body.address,
         image: req.body.image,
-        ids: req.body.ids
-    })
+        numberPhone: req.body.numberPhone
+    }, {new: true})
+    if(!update)
+        return res.status(500).send('the product cannot be updated!')
+    res.send(update);
 }
 
 const createAdmin = async (req, res) => {
-    const { name, email, address, image, ids } = req.body
+    const { name, email, address, image, numberPhone } = req.body
     const result = await Model.Admin.create({
         name, 
         email,
         address, 
-        image, 
-        ids
+        image,
+        numberPhone
     });
     return res.status(200).send(result);
 }

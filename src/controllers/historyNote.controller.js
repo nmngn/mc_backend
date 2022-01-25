@@ -1,13 +1,14 @@
 const Model = require("../model/historyNote.model");
 
 const getAllNote = async (req, res) => {
-    const result = await Model.Note.find();
+    const {idUser} = req.params;
+    const result = await Model.Note.find(idUser);
     return res.status(200).send({ data: result });
 }
 
 const getOneNote = async (req, res) => {
-    const {idNote} = req.params;
-    const result = await Model.Note.findById(idNote);
+    const {id} = req.params;
+    const result = await Model.Note.findById(id);
     if(!result){
         return res.status(500).send({message: "Không tìm thấy"})
     }
@@ -15,13 +16,13 @@ const getOneNote = async (req, res) => {
 }
 
 const deleteNote = async (req, res) => {
-    const {idNote} = req.params;
-    await Model.Note.findByIdAndDelete(idNote);
+    const {id} = req.params;
+    await Model.Note.findByIdAndDelete(id);
     return res.status(200).send({success: true});
 }
 
 const updateNote = async (req, res) => {
-    await Model.Note.findByIdAndUpdate({ idNote: req.params }, {
+    await Model.Note.findByIdAndUpdate({ id: req.params }, {
         time: req.body.time,
         image: req.body.image
     })

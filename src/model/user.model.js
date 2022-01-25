@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-    idUser: {
-        type: Number
+    idAdmin: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Admin',
     },
     name: {
+        type: String
+    },
+    address: {
         type: String
     },
     momBirth: {
@@ -33,13 +37,15 @@ const UserSchema = new mongoose.Schema({
     },
     isStar: {
         type: Boolean
-    },
-    historyNote: {
-        type: Array,
-        default: []
     }
 });
-
+UserSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+ });
+ 
+ UserSchema.set('toJSON', {
+    virtuals: true,
+ });
 const User = mongoose.model('user', UserSchema);
 
 module.exports = {
