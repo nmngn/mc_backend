@@ -3,7 +3,7 @@ const Model = require("../model/user.model");
 const getDataUserByNumberphone = async (req, res) => {
     const {numberPhone} = req.params
     const result = await Model.User.findOne({numberPhone});
-    return res.status(200).send({ data: result });
+    return res.status(200).send(result);
 }
 
 const getAllUser = async (req, res) => { 

@@ -20,6 +20,19 @@ const deleteNote = async (req, res) => {
     return res.status(200).send({success: true});
 }
 
+const deleteNotes = async (req, res) => {
+    const {idUser} = req.params;
+    Model.Note.remove({idUser}).then(product =>{
+        if(product) {
+            return res.status(200).json({success: true, message: 'the notes is deleted!'})
+        } else {
+            return res.status(404).json({success: false , message: "notes not found!"})
+        }
+    }).catch(err=>{
+       return res.status(500).json({success: false, error: err}) 
+    })
+}
+
 const updateNote = async (req, res) => {
     await Model.Note.findByIdAndUpdate({ id: req.params }, {
         time: req.body.time,
@@ -42,5 +55,6 @@ module.exports = {
     getOneNote,
     deleteNote,
     updateNote,
-    createNote
+    createNote, 
+    deleteNotes
 }

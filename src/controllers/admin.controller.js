@@ -3,7 +3,7 @@ const Model = require("../model/admin.model");
 const getDataAdminByNumberphone = async (req, res) => {
     const {numberPhone} = req.params
     const result = await Model.Admin.findOne({numberPhone});
-    return res.status(200).send({ data: result });
+    return res.status(200).send(result);
 }
 
 const getAllAdmin = async (req, res) => {
@@ -42,9 +42,10 @@ const updateAdmin = async (req, res) => {
 
 const createAdmin = async (req, res) => {
     const { name, email, address, image, numberPhone } = req.body
-    const checkPhone = await Model.Admin.find({numberPhone});
-    if(checkPhone)
+    const checkPhone = await Model.Admin.findOne({numberPhone});
+    if(checkPhone) {
         return res.status(500).send('the number phone is exist!')
+    }
     const result = await Model.Admin.create({
         name, 
         email,
