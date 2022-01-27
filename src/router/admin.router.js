@@ -8,5 +8,6 @@ router.get("/:id", adminController.getOneAdmin)
 router.put("/:id", adminController.updateAdmin)
 router.delete("/:id", adminController.deleteAdmin)
 router.post("/", adminController.createAdmin)
+router.get("/phone/:numberPhone", adminController.getDataAdminByNumberphone)
 
 module.exports = router;

@@ -1,5 +1,11 @@
 const Model = require("../model/user.model");
 
+const getDataUserByNumberphone = async (req, res) => {
+    const {numberPhone} = req.params
+    const result = await Model.User.findOne({numberPhone});
+    return res.status(200).send({ data: result });
+}
+
 const getAllUser = async (req, res) => { 
     const result = await Model.User.find();
     return res.status(200).send({ data: result });
@@ -64,5 +70,6 @@ module.exports = {
     getOneUser,
     deleteUser,
     updateUser,
-    createUser
+    createUser,
+    getDataUserByNumberphone
 }
