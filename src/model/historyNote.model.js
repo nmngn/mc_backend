@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const NoteSchema = new mongoose.Schema({
     idUser: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        type: String
     },
     time: {
         type: String

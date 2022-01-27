@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
     idAdmin: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Admin',
+        type: String
     },
     name: {
         type: String

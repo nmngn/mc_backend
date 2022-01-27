@@ -1,8 +1,7 @@
 const Model = require("../model/historyNote.model");
 
 const getAllNote = async (req, res) => {
-    const {idUser} = req.params;
-    const result = await Model.Note.find(idUser);
+    const result = await Model.Note.find();
     return res.status(200).send({ data: result });
 }
 
@@ -29,8 +28,9 @@ const updateNote = async (req, res) => {
 }
 
 const createNote = async (req, res) => {
-    const { time, image } = req.body
+    const {idUser, time, image } = req.body
     const result = await Model.Note.create({
+        idUser,
         time,
         image
     });

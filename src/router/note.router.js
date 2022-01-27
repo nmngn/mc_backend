@@ -3,7 +3,7 @@ const noteController = require('../controllers/historyNote.controller');
 
 const router = express.Router();
 
-router.get("/", noteController.getAllNote)
+router.get("/all/", noteController.getAllNote)
 router.get("/:id", noteController.getOneNote)
 router.put("/:id", noteController.updateNote)
 router.delete("/:id", noteController.deleteNote)

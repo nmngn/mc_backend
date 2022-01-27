@@ -1,8 +1,7 @@
 const Model = require("../model/user.model");
 
 const getAllUser = async (req, res) => { 
-    const {idAdmin} = req.params;
-    const result = await Model.User.find({idAdmin: idAdmin});
+    const result = await Model.User.find();
     return res.status(200).send({ data: result });
 }
 
@@ -30,7 +29,7 @@ const updateUser = async (req, res) => {
         numberPhone: req.body.numberPhone,
         height: req.body.height,
         babyDateBorn: req.body.babyDateBorn,
-        dataSave: req.body.dataSave,
+        dateSave: req.body.dateSave,
         note: req.body.note,
         avatar: req.body.avatar,
         imagePregnant: req.body.imagePregnant,
@@ -42,15 +41,16 @@ const updateUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const { name, address, momBirth, numberPhone, height, babyDateBorn, dataSave, note, avatar, imagePregnant, isStar } = req.body
+    const { idAdmin, name, address, momBirth, numberPhone, height, babyDateBorn, dateSave, note, avatar, imagePregnant, isStar } = req.body
     const result = await Model.User.create({
+        idAdmin,
         name, 
         address, 
         momBirth, 
         numberPhone, 
         height, 
         babyDateBorn, 
-        dataSave, 
+        dateSave, 
         note, 
         avatar, 
         imagePregnant, 
