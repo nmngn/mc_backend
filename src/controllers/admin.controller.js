@@ -6,7 +6,7 @@ const getDataAdminByNumberphone = async (req, res) => {
     return res.status(200).send(result);
 }
 
-const getAllAdmin = async (req, res) => {
+const getAllAdmin = async (req, res) => { 
     const result = await Model.Admin.find();
     return res.status(200).send({ data: result });
 }
