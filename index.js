@@ -6,9 +6,8 @@ const path = require('path')
 const cors = require('cors');
 require('dotenv/config');
 
-const userRouter = require('./src/router/user.router')
-const adminRouter = require('./src/router/admin.router')
-const noteRouter = require('./src/router/note.router')
+const transactionRouter = require('./src/router/transaction.router')
+
 //connect to db
 db.connectDB()
 
@@ -22,9 +21,7 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 //router init
-app.use('/user', userRouter);
-app.use('/admin', adminRouter);
-app.use('/note', noteRouter)
+app.use('/transaction', transactionRouter);
 
 var server = app.listen(process.env.PORT || 3001, function() {
   var port = server.address().port;
