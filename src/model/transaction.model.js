@@ -2,7 +2,7 @@ const { Int32 } = require("mongodb");
 const mongoose = require("mongoose");
 
 const TransactionSchema = new mongoose.Schema({
-    idTransaction: {
+    idUser: {
         type: String
     },
     title: {
@@ -24,9 +24,6 @@ const TransactionSchema = new mongoose.Schema({
         type: String
     }
 });
-TransactionSchema.virtual('id').get(function () {
-    return this._id.toHexString();
- });
  
  TransactionSchema.set('toJSON', {
     virtuals: true,

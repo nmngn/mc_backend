@@ -7,7 +7,7 @@ const cors = require('cors');
 require('dotenv/config');
 
 const transactionRouter = require('./src/router/transaction.router')
-
+const userRouter = require('./src/router/user.router')
 //connect to db
 db.connectDB()
 
@@ -22,6 +22,7 @@ app.use(express.json())
 
 //router init
 app.use('/transaction', transactionRouter);
+app.use('/user', userRouter)
 
 var server = app.listen(process.env.PORT || 3001, function() {
   var port = server.address().port;
