@@ -26,7 +26,7 @@ const updateTransaction = async (req, res) => {
         title: req.body.title,
         description: req.body.description,
         amount: req.body.amount,
-        income: req.body.income,
+        isIncome: req.body.isIncome,
         category: req.body.category,
         dateTime: req.body.dateTime,
     }, { new: true })
@@ -36,13 +36,13 @@ const updateTransaction = async (req, res) => {
 }
 
 const createTransaction = async (req, res) => {
-    const { idUser, title, description, amount, income, category, dateTime } = req.body
+    const { idUser, title, description, amount, isIncome, category, dateTime } = req.body
     const result = await Model.Transaction.create({
         idUser,
         title,
         description,
         amount,
-        income,
+        isIncome,
         category,
         dateTime
     });
