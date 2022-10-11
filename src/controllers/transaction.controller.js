@@ -59,6 +59,7 @@ const createTransaction = async (req, res) => {
 }
 
 module.exports = {
+    getTransactionRangeDate,
     getAllTransaction,
     getOneTransaction,
     deleteTransaction,
