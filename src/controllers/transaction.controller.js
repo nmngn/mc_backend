@@ -1,5 +1,11 @@
 const Model = require("../model/transaction.model");
 
+const getTransactionRangeDate = async (req, res) => {
+    const {sDay, eDay} = req.body
+    await Model.Transaction.find({ start_date : {$gte: sDay, $lt: eDay}, 
+        resource: Model.Transaction., isdeleted: { $ne: false }})
+}
+
 const getAllTransaction = async (req, res) => {
     const result = await Model.Transaction.find();
     return res.status(200).send(result);
