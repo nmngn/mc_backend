@@ -1,9 +1,12 @@
 const Model = require("../model/transaction.model");
 
 const getTransactionRangeDate = async (req, res) => {
-    const {sDay, eDay} = req.body
-    await Model.Transaction.find({ start_date : {$gte: sDay, $lt: eDay}, 
-        resource: Model.Transaction., isdeleted: { $ne: false }})
+    const { sDay, eDay } = req.body
+    const result = await Model.Transaction.find({ createdAt: { $gte: ISODate(sDay), $lt: ISODate(eDay) } });
+    if (!result) {
+        return res.status(500).send({ message: "Không có dữ liệu" })
+    }
+    return res.status(200).send(result);
 }
 
 const getAllTransaction = async (req, res) => {
