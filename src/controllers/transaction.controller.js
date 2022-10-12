@@ -1,8 +1,8 @@
 const Model = require("../model/transaction.model");
 
 const getTransactionRangeDate = async (req, res) => {
-    const { sDay, eDay } = req.body
-    const result = await Model.Transaction.find({ createdAt: { $gte: ISODate(sDay), $lt: ISODate(eDay) } });
+    const { sDay, eDay } = req.query
+    const result = await Model.Transaction.find({ createdAt: { $gte: new Date(sDay), $lt: new Date(eDay) } });
     if (!result) {
         return res.status(500).send({ message: "Không có dữ liệu" })
     }
