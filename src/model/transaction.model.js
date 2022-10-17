@@ -24,10 +24,14 @@ const TransactionSchema = new mongoose.Schema({
         type: String
     }
 });
- 
- TransactionSchema.set('toJSON', {
+
+TransactionSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+TransactionSchema.set('toJSON', {
     virtuals: true,
- });
+});
 const Transaction = mongoose.model('transaction', TransactionSchema);
 
 module.exports = {

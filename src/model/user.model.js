@@ -7,12 +7,17 @@ const UserSchema = new mongoose.Schema({
     },
     dayOfBirth: {
         type: String
-    }
+    }, 
 });
- 
- UserSchema.set('toJSON', {
+
+UserSchema.virtual('id').get(function () {
+    return this._id.toHexString();
+});
+
+
+UserSchema.set('toJSON', {
     virtuals: true,
- });
+});
 const User = mongoose.model('user', UserSchema);
 
 module.exports = {
