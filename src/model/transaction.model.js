@@ -14,14 +14,14 @@ const TransactionSchema = new mongoose.Schema({
     amount: {
         type: String
     },
-    income: {
-        type: Number
-    },
     category: {
         type: String
     },
     dateTime: {
         type: String
+    }, 
+    isIncome: {
+        type: Boolean
     }
 });
 
