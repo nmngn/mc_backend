@@ -2,7 +2,7 @@ const Model = require("../model/transaction.model");
 
 const getTransactionRangeDate = async (req, res) => {
     const { sDay, eDay } = req.query
-    const result = await Model.Transaction.find({ createdAt: { $gte: new Date(sDay), $lt: new Date(eDay) } });
+    const result = await Model.Transaction.find({ dateTime: { $gte: sDay, $lte: eDay } })
     if (!result) {
         return res.status(500).send({ message: "Không có dữ liệu" })
     }
