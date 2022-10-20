@@ -25,6 +25,7 @@ const updateUser = async (req, res) => {
     const update = await Model.User.findByIdAndUpdate(id, {
         name: req.body.name,
         dayOfBirth: req.body.dayOfBirth,
+        allMoney: req.body.allMoney
     }, { new: true })
     if (!update)
         return res.status(500).send('the product cannot be updated!')
@@ -32,10 +33,11 @@ const updateUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const { name, dayOfBirth } = req.body
+    const { name, dayOfBirth, allMoney } = req.body
     const result = await Model.User.create({
         name,
-        dayOfBirth
+        dayOfBirth,
+        allMoney,
     });
     return res.status(200).send(result);
 }

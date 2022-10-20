@@ -19,8 +19,11 @@ const TransactionSchema = new mongoose.Schema({
     },
     dateTime: {
         type: String
-    }, 
+    },
     isIncome: {
+        type: Boolean
+    },
+    type: {
         type: Boolean
     }
 });

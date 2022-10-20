@@ -45,7 +45,7 @@ const updateTransaction = async (req, res) => {
 }
 
 const createTransaction = async (req, res) => {
-    const { idUser, title, description, amount, isIncome, category, dateTime } = req.body
+    const { idUser, title, description, amount, isIncome, category, dateTime, type } = req.body
     const result = await Model.Transaction.create({
         idUser,
         title,
@@ -53,7 +53,8 @@ const createTransaction = async (req, res) => {
         amount,
         isIncome,
         category,
-        dateTime
+        dateTime,
+        type
     });
     return res.status(200).send(result);
 }

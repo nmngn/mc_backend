@@ -8,6 +8,9 @@ const UserSchema = new mongoose.Schema({
     dayOfBirth: {
         type: String
     }, 
+    allMoney: {
+        type: Number
+    }
 });
 
 UserSchema.virtual('id').get(function () {
