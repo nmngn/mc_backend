@@ -37,7 +37,7 @@ const createUser = async (req, res) => {
     const result = await Model.User.create({
         name,
         dayOfBirth,
-        allMoney,
+        allMoney
     });
     return res.status(200).send(result);
 }

@@ -11,7 +11,7 @@ const getTransactionRangeDate = async (req, res) => {
 
 const getAllTransaction = async (req, res) => {
     const result = await Model.Transaction.find();
-    return res.status(200).send(result);
+    return res.status(200).send({data: result});
 }
 
 const getOneTransaction = async (req, res) => {
