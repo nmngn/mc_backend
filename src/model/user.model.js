@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
         type: String
     }, 
     allMoney: {
-        type: Number
+        type: String
     }
 });
 
