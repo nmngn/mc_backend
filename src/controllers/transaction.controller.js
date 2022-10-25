@@ -37,6 +37,7 @@ const updateTransaction = async (req, res) => {
         amount: req.body.amount,
         isIncome: req.body.isIncome,
         category: req.body.category,
+	type: req.body.type
     }, { new: true })
     if (!update)
         return res.status(500).send('the product cannot be updated!')
