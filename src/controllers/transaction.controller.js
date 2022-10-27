@@ -10,7 +10,9 @@ const getTransactionRangeDate = async (req, res) => {
 }
 
 const getAllTransaction = async (req, res) => {
-    const result = await Model.Transaction.find();
+    const {idUser} = req.params
+    console.log(idUser)
+    const result = await Model.Transaction.find({idUser: idUser})
     return res.status(200).send({data: result});
 }
 
